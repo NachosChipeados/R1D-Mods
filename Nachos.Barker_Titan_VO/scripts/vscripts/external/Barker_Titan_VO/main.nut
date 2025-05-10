@@ -1,8 +1,8 @@
 function main()
 {
 	// Disable this if you want them to play on all maps
-//	if ( GetMapName() != "mp_airbase" )
-//		return
+	if ( GetMapName() != "mp_airbase" )
+		return
 
 	local convRef
 
