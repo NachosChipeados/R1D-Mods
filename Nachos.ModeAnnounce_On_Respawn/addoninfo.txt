@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"addontitle"			"Nachos.ModeAnnounce_On_Respawn"
+	"addonDescription"		"Server-side mod that plays the gamemode announcement every time you respawn, for the True Nexon Experience"
+	"addonversion"			"1.0"
+	"addonauthor"			"NachosChipeados"
+
+	"addonContent_Script"	"1"
+}
