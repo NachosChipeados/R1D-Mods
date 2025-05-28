@@ -1,0 +1,11 @@
+"AddonInfo"
+{
+	// https://github.com/R2Northstar/NorthstarMods/blob/main/Northstar.Custom/mod/scripts/vscripts/sh_custom_pilot_collision.gnut
+
+	"addontitle"			"Nachos.No_Pilot_Collision"
+	"addonDescription"		"Server-side mod that disables inter-pilot collision. Credits to Northstar, since this mod is literally just copied from it lol"
+	"addonversion"			"1.0"
+	"addonauthor"			"NachosChipeados"
+
+	"addonContent_Script"	"1"
+}
