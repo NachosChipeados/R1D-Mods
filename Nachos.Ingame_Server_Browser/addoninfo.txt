@@ -1,7 +1,7 @@
 "AddonInfo"
 {
 	"addontitle"			"Nachos.Ingame_Server_Browser"
-	"addonDescription"		"Adds a button to open the server browser button in the pause menu."
+	"addonDescription"		"Adds a button to open the server browser in the pause menu."
 	"addonversion"			"1.0"
 	"addonauthor"			"NachosChipeados"
 
