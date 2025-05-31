@@ -1064,11 +1064,11 @@ function InitMenus()
 	AddSubmenu( "TitanOSSelectMenu", "resource/ui/menus/titanosselect.menu" )
 	AddSubmenu( "TitanSelectMenu", "resource/ui/menus/titanselect.menu" )
 	AddSubmenu( "DecalSelectMenu", "resource/ui/menus/decalselect.menu" )
-//	if( developer() == 1 )
-//	{
+	if( developer() == 1 )
+	{
 		AddMenu( "DevMenu", "resource/ui/menus/dev.menu", "Dev" )
 		AddMenu( "DevLevelMenu", "resource/ui/menus/devlevel.menu", "Level Commands" )
-//	}
+	}
 	AddMenu( "CreditsMenu", "resource/ui/menus/credits.menu", "#CREDITS" )
 
 	// Main
@@ -1184,14 +1184,14 @@ function InitMenus()
 	AddEventHandlerToButtonClass( menu, "BurnCardMenuButtonClass", UIE_CLICK, AdvanceMenuEventHandler( GetMenu( "BurnCards_pickcard" ) ) )
 	AddEventHandlerToButtonClass( menu, "RankedButtonClass", UIE_CLICK, OnRankToggleButton_Activate )
 
-//	if ( GetDeveloperLevel() )
-//	{
+	if ( GetDeveloperLevel() )
+	{
 		AddEventHandlerToButtonClass( menu, "DevButtonClass", UIE_CLICK, AdvanceMenuEventHandler( GetMenu( "DevMenu" ) ) )
 
 		local buttons = GetElementsByClassname( menu, "DevButtonClass" )
 		foreach ( button in buttons )
 			button.Show()
-//	}
+	}
 
 	AddEventHandlerToButtonClass( menu, "ServerBrowserButtonClass", UIE_CLICK, AdvanceMenuEventHandler( GetMenu( "ServerBrowserMenu" ) ) )
 
@@ -1200,14 +1200,14 @@ function InitMenus()
 	AddEventHandlerToButtonClass( menu, "OptionsButtonClass", UIE_CLICK, AdvanceMenuEventHandler( GetMenu( "OptionsMenu" ) ) )
 	AddEventHandlerToButtonClass( menu, "LeaveGameButtonClass", UIE_CLICK, OnLeaveGameButton_Activate )
 
-//	if ( GetDeveloperLevel() )
-//	{
+	if ( GetDeveloperLevel() )
+	{
 		AddEventHandlerToButtonClass( menu, "DevButtonClass", UIE_CLICK, AdvanceMenuEventHandler( GetMenu( "DevMenu" ) ) )
 
 		local buttons = GetElementsByClassname( menu, "DevButtonClass" )
 		foreach ( button in buttons )
 			button.Show()
-//	}
+	}
 
 	// Stats Menus
 	local menu = GetMenu( "ViewStatsMenu" )
@@ -1234,8 +1234,8 @@ function InitMenus()
 	AddEventHandlerToButtonClass( menu, "GenerationRespawnButtonClass", UIE_CLICK, OnRegenButtonClick )
 
 	// Dev
-//	if ( GetDeveloperLevel() )
-//	{
+	if ( GetDeveloperLevel() )
+	{
 		local menu = GetMenu( "DevMenu" )
 		AddEventHandlerToButtonClass( menu, "DevLevelMenuButtonClass", UIE_CLICK, AdvanceMenuEventHandler( GetMenu( "DevLevelMenu" ) ) )
 		AddEventHandlerToButtonClass( menu, "DevButtonClass", UIE_CLICK, OnDevButton_Activate )
@@ -1243,7 +1243,7 @@ function InitMenus()
 		// Dev Level
 		local menu = GetMenu( "DevLevelMenu" )
 		AddEventHandlerToButtonClass( menu, "DevLevelButtonClass", UIE_CLICK, OnDevLevelButton_Activate )
-//	}
+	}
 
 	// Dialogs
 	InitDialogMenu( GetMenu( "ConfirmDialog" ) )
