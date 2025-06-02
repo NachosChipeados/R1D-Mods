@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"addontitle"			"Nachos.G2_Sniper"
+	"addonDescription"		"Lets the G2 use the sniper hit indicator when using the AOG sight."
+	"addonversion"			"1"
+	"addonauthor"			"NachosChipeados"
+
+	"addonContent_Script"	"1"
+}
