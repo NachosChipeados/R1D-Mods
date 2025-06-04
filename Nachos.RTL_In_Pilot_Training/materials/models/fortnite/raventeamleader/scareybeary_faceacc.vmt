@@ -1,0 +1,41 @@
+VertexLitGeneric
+{
+	$basetexture		models\fortnite\raventeamleader\ScareyBeary_FaceAcc_D
+	$bumpmap		models\fortnite\raventeamleader\ScareyBeary_FaceAcc_N
+	$phongexponenttexture	models\fortnite\raventeamleader\ScareyBeary_FaceAcc_S
+	$lightwarptexture	models\fortnite\raventeamleader\lightwarp
+
+	$phong 1
+	$phongboost 1
+	$phongfresnelranges "[1 2 4]"
+	$normalmapalphaenvmapmask 1
+
+//	$envmap env_cubemap
+//	$envmaptint "[0.1 0.1 0.1]"
+//	$envmapfresnel 1
+
+	$rimlight 1
+	$rimmask 1
+	$rimlightboost 1
+}
+
+//VertexLitGeneric
+//{
+//	$basetexture		models\fortnite\raventeamleader\ScareyBeary_FaceAcc_D
+//	$bumpmap		models\fortnite\raventeamleader\ScareyBeary_FaceAcc_N
+//	$phongexponenttexture	models\fortnite\raventeamleader\ScareyBeary_FaceAcc_S
+//	$lightwarptexture	models\fortnite\raventeamleader\lightwarp
+//
+//	$phong 1
+//	$phongboost 1
+//	$phongfresnelranges "[1 2 4]"
+//	$normalmapalphaenvmapmask 1
+//
+//	$envmap env_cubemap
+//	$envmaptint "[0.1 0.1 0.1]"
+//	$envmapfresnel 1
+//
+//	$rimlight 1
+//	$rimmask 1
+//	$rimlightboost 1
+//}

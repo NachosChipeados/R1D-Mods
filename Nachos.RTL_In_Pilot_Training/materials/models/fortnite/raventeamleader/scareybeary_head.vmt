@@ -1,0 +1,23 @@
+Basic
+{
+	$basetexture	models\fortnite\raventeamleader\ScareyBeary_Head_D
+	$bumpmap	models\fortnite\raventeamleader\ScareyBeary_Head_N
+	$detail		models\fortnite\raventeamleader\ScareyBeary_Head_E
+
+	$phong 1
+
+	$detailscale 1
+	$detailblendmode 5
+}
+
+//VertexLitGeneric
+//{
+//	$basetexture	models\fortnite\raventeamleader\ScareyBeary_Head_D
+//	$bumpmap	models\fortnite\raventeamleader\ScareyBeary_Head_N
+//	$detail		models\fortnite\raventeamleader\ScareyBeary_Head_E
+//
+//	$phong 1
+//
+//	$detailscale 1
+//	$detailblendmode 5
+//}

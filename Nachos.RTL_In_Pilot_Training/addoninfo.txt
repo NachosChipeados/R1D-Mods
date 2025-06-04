@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"addontitle"			"Nachos.RTL_In_Pilot_Training"
+	"addonDescription"		"Adds Raven Team Leader to your room in the Pilot training, just like Respawn intended (maybe). The model and textures were taken from P-PANDA on the L4D2 workshop."
+	"addonversion"			""
+	"addonauthor"			""
+
+	"addonContent_Script"	"1"
+}
