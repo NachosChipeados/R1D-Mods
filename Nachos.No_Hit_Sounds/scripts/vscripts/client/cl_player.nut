@@ -1910,6 +1910,7 @@ function ServerCallback_OnEntityKilled( attackerEHandle, victimEHandle, scriptDa
 
 	}
 
+/*
 	if( victim.IsPlayer() && victim != attacker )
 	{
 		if( attacker == localPlayer )
@@ -1923,6 +1924,7 @@ function ServerCallback_OnEntityKilled( attackerEHandle, victimEHandle, scriptDa
 				EmitSoundOnEntity( bossPlayer, "Pilot_Killed_Indicator" )
 		}
 	}
+*/
 
 	//if it's an auto titan, the obit was already printed when doomed
 	if ( ( victim.IsTitan() ) && ( !victim.IsPlayer() ) )
