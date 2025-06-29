@@ -1,7 +1,7 @@
 "AddonInfo"
 {
-	"addontitle"			"Nachos.Si_Scripts"
-	"addonDescription"		"Removes hit sounds"
+	"addontitle"			"Nachos.No_Hit_Sounds"
+	"addonDescription"		"Disables hit and kill sounds"
 	"addonversion"			"1.0"
 	"addonauthor"			"NachosChipeados"
 
