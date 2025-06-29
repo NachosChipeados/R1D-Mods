@@ -1088,7 +1088,7 @@ function ClientCodeCallback_PlayerDidDamage( params )
 		Crosshair_ShowHitIndicator( hitWeakpoint, hitIneffective, false )
 	}
 
-/*
+
 	if ( IsValid( victim ) && playKillSound )
 	{
 		PlayKillShotSound( attacker, victim, damageType, isHeadShot )
@@ -1097,6 +1097,10 @@ function ClientCodeCallback_PlayerDidDamage( params )
 	// Play a hit sound effect if we didn't play a kill shot sound, and other conditions are met
 	if ( playHitSound )
 	{
+		if ( hitWeakpoint && victimIsTitan )
+			EmitSoundOnEntity( attacker, "titan_damage_crit" )
+
+/*
 		if ( damageFlags & DAMAGEFLAG_VICTIM_INVINCIBLE )
 			EmitSoundOnEntity( attacker, "Player.HitbeepInvincible" )
 		else if ( damageFlags & DAMAGEFLAG_VICTIM_HAS_VORTEX )
@@ -1109,8 +1113,8 @@ function ClientCodeCallback_PlayerDidDamage( params )
 			EmitSoundOnEntity( attacker, "Player.Hitbeep_crit" )
 		else
 			EmitSoundOnEntity( attacker, "Player.Hitbeep" )
-	}
 */
+	}
 
 	if ( level.rankedPlayEnabled )
 		TryRankedHudHighlight( player, victimIsTitan )
@@ -1138,6 +1142,7 @@ function PlayKillShotSound( attacker, victim, damageType, isHeadShot )
 			else
 				soundAlias = "Android.Shotgun.BulletImpact_KillShot_1P_vs_3P"
 		}
+/*
 		else
 		{
 			if ( isHeadShot )
@@ -1145,6 +1150,7 @@ function PlayKillShotSound( attacker, victim, damageType, isHeadShot )
 			else
 				soundAlias = "Flesh.Shotgun.BulletImpact_KillShot_1P_vs_3P"
 		}
+*/
 	}
 	else if ( damageType & damageTypes.Bullet || damageType & damageTypes.SmallArms )
 	{
@@ -1155,6 +1161,7 @@ function PlayKillShotSound( attacker, victim, damageType, isHeadShot )
 			else
 				soundAlias = "Android.BulletImpact_KillShot_1P_vs_3P"			// light ballistic vs. Spectre or Marvin
 		}
+/*
 		else
 		{
 			if ( isHeadShot )
@@ -1162,6 +1169,7 @@ function PlayKillShotSound( attacker, victim, damageType, isHeadShot )
 			else
 				soundAlias = "Flesh.BulletImpact_KillShot_1P_vs_3P"			// light ballistic vs. pilot or grunt
 		}
+*/
 	}
 	else if ( damageType & damageTypes.LargeCaliber || damageType & DF_GIB )
 	{
@@ -1172,6 +1180,7 @@ function PlayKillShotSound( attacker, victim, damageType, isHeadShot )
 			else
 				soundAlias = "Android.Heavy.BulletImpact_KillShot_1P_vs_3P"	// heavy ballistic vs. Spectre or Marvin
 		}
+/*
 		else
 		{
 			if ( isHeadShot )
@@ -1179,6 +1188,7 @@ function PlayKillShotSound( attacker, victim, damageType, isHeadShot )
 			else
 				soundAlias = "Flesh.Heavy.BulletImpact_Killshot_1P_vs_3P"	// heavy ballistic vs. pilot or grunt
 		}
+*/
 	}
 
 	if ( soundAlias == null )
