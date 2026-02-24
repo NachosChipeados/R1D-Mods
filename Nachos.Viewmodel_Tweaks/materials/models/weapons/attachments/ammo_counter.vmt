@@ -1,0 +1,29 @@
+// v1.01
+//This file is auto-generated from reVaMpT. Edit at your own risk.
+"VertexLitGeneric"
+{
+
+	"$surfaceprop" "metal"
+	"$basetexture" "models/weapons/attachments/ammo_counter_col"
+	"$bumpmap" "models/weapons/attachments/ammo_counter_nml"
+	//"$rimlight" "1"
+	//"$rimlighttint" "[1 1 1]"
+	//"$rimlightintensity" "2"
+
+	// HEMLOK
+//	"$envmap" "env_cubemap" //looks bad
+	"$reflectiontint" "models/weapons/attachments/ammo_counter_spc"
+	"$reflectiontintshininess" "models/weapons/attachments/ammo_counter_spc"
+	"$reflectiontintcolor" "1"
+	"$fresnelamount" "1"
+	"$fresnelintensity" "15"
+	"$fresnelcurvesharpness" "1"
+	"$envmapfresnel" "1"
+	"$envmapLambertian" "3"
+	"$envmaptint" "[1 1 1]"
+	"$EnvmapSharpnessBias" "1"
+	"$speculartint" "[1 1 1]"
+	"$shininess" "models/weapons/attachments/ammo_counter_exp"
+	"$selfillum" "1"
+	"$selfillummask" "models/weapons/attachments/ammo_counter_ilm"
+}
