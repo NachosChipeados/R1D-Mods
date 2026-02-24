@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"addontitle"			"Nachos.Viewmodel_Tweaks"
+	"addonDescription"		"Various tweaks and edits to a few viewmodels"
+	"addonversion"			"1.0"
+	"addonauthor"			"NachosChipeados"
+
+	"addonContent_Skin"		"1"
+}
