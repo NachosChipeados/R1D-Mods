@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"addontitle"			"Nachos.Drawfirst_Command"
+	"addonDescription"		"Adds a command to play your weapon's drawfirst animations (if it has any)"
+	"addonversion"			"1.0"
+	"addonauthor"			"NachosChipeados"
+
+	"addonContent_Script"	"1"
+}
