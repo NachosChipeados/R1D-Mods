@@ -26,8 +26,8 @@ WeaponData
 	"anim_prefix" 									"smg2"
 
 	// Effects
-	"tracer_effect"   								"weapon_tracers_pistol"
-	"tracer_effect_first_person"   					"weapon_tracers_pistol"
+	"tracer_effect"   								"weapon_tracers"
+	"tracer_effect_first_person"   					"weapon_tracers"
 	"impact_effect_table" 							"inc_bullet"
 	"vortex_absorb_effect"							"wpn_vortex_projectile_rifle_FP"
 	"vortex_absorb_effect_third_person"				"wpn_vortex_projectile_rifle"
@@ -324,6 +324,9 @@ WeaponData
 	"bodygroup6_name"	"suppressor_sq_med"
 	"bodygroup6_set"	"0"
 
+	"bodygroup7_name"	"sight_hcog_r5"
+	"bodygroup7_set"	"0"
+
     "clip_bodygroup"						"car101_magazine"
     "clip_bodygroup_index_shown"			"0"
     "clip_bodygroup_index_hidden"			"1"
@@ -370,6 +373,7 @@ WeaponData
 			//"rumble"  										"4"
 
 			"tracer_effect"   								"weapon_tracers_pistol"
+			"tracer_effect_first_person"   					"weapon_tracers_pistol"
 			"minimap_reveal_distance"	"1"
 
 			"fx_muzzle_flash_view"						"wpn_muzzleflash_pistol_sup_FP"
@@ -430,6 +434,21 @@ WeaponData
 			"bodygroup1_set"								"0"
 			"zoom_fov"										"40"
 		}
+
+		aog
+		{
+			"bodygroup2_set"		"1"
+			"bodygroup1_set"		"0"
+			"anim_alt_idleAttack"	"3"
+			"zoom_fov"				"30"
+		}
+		hcog_r5
+		{
+			"bodygroup7_set"	"1"
+			"anim_alt_idleAttack" "1"
+			"bodygroup1_set"	"0"
+			"zoom_fov"			"55"
+		}
 	}
 
 	CrosshairData
@@ -458,6 +477,20 @@ WeaponData
 				"type"						"spread"
 				"material"					"hud/crosshairs/standard_plus_shadow"
 			}
+//			Element2
+//			{
+//				"type"						"static"
+//				"material"					"hud/crosshairs/b3wingman"
+//				"size_x"					"28"
+//				"size_y"					"28"
+//			}
+//			Element3
+//			{
+//				"type"						"static"
+//				"material"					"hud/crosshairs/b3wingman_shadow"
+//				"size_x"					"28"
+//				"size_y"					"28"
+//			}
 		}
 		Burn_Mod //Match BaseWeapon + default color change.
 		{
