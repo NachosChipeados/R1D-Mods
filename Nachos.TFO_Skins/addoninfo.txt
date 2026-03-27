@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"addontitle"			"Nachos.TFO_Skins"
+	"addonDescription"		"A few weapon reskins from Titanfall Online"
+	"addonversion"			"1.0"
+	"addonauthor"			"NachosChipeados"
+
+	"addonContent_Skin"		"1"
+}
