@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"addontitle"			"Nachos.Team_Mine_Beeps"
+	"addonDescription"		"Plays mine and satchel beep sounds even when they're on your team, just like in TF2"
+	"addonversion"			"1.0"
+	"addonauthor"			"NachosChipeados"
+
+	"addonContent_Script"	"1"
+}
