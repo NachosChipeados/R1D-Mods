@@ -1,0 +1,26 @@
+// v1.01
+//This file is auto-generated from reVaMpT. Edit at your own risk.
+"VertexLitGeneric"
+{
+	"$vertexcolor" "1"
+	"$vertexalpha" "1"
+
+	"$surfaceprop" "metal"
+	"$basetexture" "models\weapons\r97\r97_n_col"
+	"$bumpmap" "models\weapons\r97\r97_n_nml"
+	"$envmap" "env_cubemap"
+	"$reflectiontint" "models\weapons\r97\r97_n_spc"
+	"$reflectiontintshininess" "models\weapons\r97\r97_n_spc"
+	"$reflectiontintcolor" "1"
+	"$fresnelamount" "1"
+	"$fresnelintensity" "12"
+	"$fresnelcurvesharpness" "1"
+	"$envmapfresnel" "1"
+	"$envmapLambertian" "3"
+	"$envmaptint" "[1 1 1]"
+	"$EnvmapSharpnessBias" "0"
+	"$speculartint" "[1 1 1]"
+	"$shininess" "models\weapons\r97\r97_exp"
+	"$selfillum" "1"
+	"$selfillummask" "models\weapons\r97\r97_ilm"
+}

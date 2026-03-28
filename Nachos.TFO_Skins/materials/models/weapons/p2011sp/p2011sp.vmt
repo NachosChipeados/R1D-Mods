@@ -1,0 +1,26 @@
+// v1.01
+//This file is auto-generated from reVaMpT. Edit at your own risk.
+"VertexLitGeneric"
+{
+	"$vertexcolor" "1"
+	"$vertexalpha" "1"
+
+	"$surfaceprop" "metal"
+	"$basetexture" "models\weapons\p2011sp\p2011sp_n_col"
+	"$bumpmap" "models\weapons\p2011sp\p2011sp_n_nml"
+	"$envmap" "env_cubemap"
+	"$reflectiontint" "models\weapons\p2011sp\p2011sp_n_spc"
+	"$reflectiontintshininess" "models\weapons\p2011sp\p2011sp_n_spc"
+	"$reflectiontintcolor" "1"
+	"$fresnelamount" "1"
+	"$fresnelintensity" "15"
+	"$fresnelcurvesharpness" "1"
+	"$envmapfresnel" "1"
+	"$envmapLambertian" "2.66"
+	"$envmaptint" "[1.36470588235294 1.36470588235294 1.36470588235294]"
+	"$EnvmapSharpnessBias" "0"
+	"$speculartint" "[0.8470588 0.8470588 0.8470588]"
+	"$shininess" "models\weapons\p2011sp\p2011sp_exp"
+	"$selfillum" "1"
+	"$selfillummask" "models\weapons\p2011sp\p2011sp_ilm"
+}

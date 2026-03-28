@@ -1,0 +1,26 @@
+// v1.01
+//This file is auto-generated from reVaMpT. Edit at your own risk.
+"VertexLitGeneric"
+{
+
+	"$surfaceprop" "metal"
+	"$basetexture" "models\weapons\defender\defender_n_col"
+	"$bumpmap" "models\weapons\defender\defender_n_nml"
+	"$envmap" "env_cubemap"
+	"$reflectiontint" "models\weapons\defender\defender_n_spc"
+	"$reflectiontintshininess" "models\weapons\defender\defender_n_spc"
+	"$reflectiontintcolor" "1"
+	"$fresnelamount" "1"
+	"$fresnelintensity" "10"
+	"$fresnelcurvesharpness" "1"
+	"$envmapfresnel" "1"
+	"$envmapLambertian" "3"
+	"$envmaptint" "[1 1 1]"
+	"$EnvmapSharpnessBias" "0"
+	"$specularboost" "1.5"
+	"$speculartint" "[1 1 1]"
+	"$shininess" "models\weapons\defender\defender_exp"
+	"$selfillum" "1"
+	"$selfillummask" "models\weapons\defender\defender_ilm_n"
+	"$selfillumtint" "[4.921568 3.54902 2.039216]"
+}
