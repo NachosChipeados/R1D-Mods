@@ -187,10 +187,10 @@ WeaponData
 	"bob_roll"										"-0.75"
 
 	// Bob_Zoomed
-	"bob_cycle_time_zoomed"  						"0.45"
-	"bob_vert_dist_zoomed"   						"0.01"
-	"bob_horz_dist_zoomed"   						"0.01"
-	"bob_max_speed_zoomed"   						"150"
+	//"bob_cycle_time_zoomed"  						"0.45"
+	//"bob_vert_dist_zoomed"   						"0.01"
+	//"bob_horz_dist_zoomed"   						"0.01"
+	//"bob_max_speed_zoomed"   						"150"
 	//"bob_pitch_zoomed"   							"0.002"
 	//"bob_yaw_zoomed" 								"-.002"
 	//"bob_roll_zoomed"								".002"
