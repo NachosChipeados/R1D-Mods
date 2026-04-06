@@ -25,6 +25,6 @@ function OnWeaponReload( reloadParams )
 {
 	if ( IsServer() )
 	{
-		VP_PlayReloadVO_Think_Old( self.GetWeaponOwner() )
+		VP_PlayReloadVO( self.GetWeaponOwner() )
 	}
 }
