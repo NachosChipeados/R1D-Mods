@@ -30,7 +30,9 @@ function main()
 	voicelines.ALLY_PILOT_DOWN <- { prefix = "diag_%s_grunt%i_gs_allypilotdown_0%s_1", maxLines = 5 }
 	voicelines.ALLY_TITAN_DOWN <- { prefix = "diag_%s_grunt%i_gs_allytitandown_0%s_1", maxLines = 5 }
 	voicelines.ALLY_EJECT_FAIL <- { prefix = "diag_%s_grunt%i_gs_allyejectfail_0%s_1", maxLines = 5 }
-
+	voicelines.CAPTURING_HP <- { prefix = "diag_%s_grunt%i_hp_capturinghp_0%s_1", maxLines = 5 }
+	voicelines.CAPTURING_HP_GEN <- { prefix = "diag_%s_grunt%i_hp_capturinghpgen_0%s_1", maxLines = 3 }
+	voicelines.CAPTURED_HP <- { prefix = "diag_%s_grunt%i_hp_capturedhp_0%s_1", maxLines = 5 }
 
 	::events <- {}
 	events[ "reload" ] <- { voiceline = voicelines.RELOAD, priority = 2.0, debounce = 2.0 }
@@ -48,6 +50,9 @@ function main()
 	events[ "ally_pilot_down" ] <- { voiceline = voicelines.ALLY_PILOT_DOWN, priority = 3.0, debounce = 5.0 }
 	events[ "ally_titan_down" ] <- { voiceline = voicelines.ALLY_TITAN_DOWN, priority = 3.0, debounce = 5.0 }
 	events[ "ally_eject_fail" ] <- { voiceline = voicelines.ALLY_EJECT_FAIL, priority = 3.0, debounce = 5.0 }
+	events[ "capturing_hp" ] <- { voiceline = voicelines.CAPTURING_HP, priority = 0.5, debounce = 3.0, teamOnly = true }
+	events[ "capturing_hp_gen" ] <- { voiceline = voicelines.CAPTURING_HP_GEN, priority = 0.5, debounce = 3.0, teamOnly = true }
+	events[ "captured_hp" ] <- { voiceline = voicelines.CAPTURED_HP, priority = 0.5, debounce = 2.0, teamOnly = true }
 
 	if ( GAMETYPE == COOPERATIVE )
 		events[ "kill_titan" ].debounce = 4.0
@@ -82,10 +87,13 @@ function main()
 
 function EntitiesDidLoad()
 {
-	foreach( i, hardpoint in level.hardpoints )
+	if ( GAMETYPE != CAPTURE_POINT && GAMETYPE != UPLINK )
+		return
+
+	RegisterHardpointTriggerFunc( Bind( VP_HardpointOnStartTouch ), Bind( VP_HardpointOnEndTouch ) )
+	foreach ( hardpoint in level.hardpoints )
 	{
-		//hardpoint.s.trigger.ConnectOutput( "OnStartTouch", VP_HardpointOnStartTouch )
-		//hardpoint.s.trigger.ConnectOutput( "OnEndTouch", VP_HardpointOnEndTouch )
+		AddHardpointTeamSwitchCallback( VP_HardpointSwitchedTeam ) //////
 	}
 }
 
@@ -244,10 +252,12 @@ function VP_PlayDeathSound( victim, damageInfo )
 
 function VP_PlayAllyDownSound( victim, attacker, damageInfo )
 {
-	if ( victim == attacker || victim == attacker.GetPetTitan() )
+	if ( victim == attacker || ( attacker.GetPetTitan() && victim == attacker.GetPetTitan() ) )
 		return
 
 	local deathSound
+	local i = 0
+
 	foreach( player in GetPlayerArrayOfTeam( victim.GetTeam() ) )
 	{
 		if ( !IsAlive( player ) )
@@ -269,7 +279,10 @@ function VP_PlayAllyDownSound( victim, attacker, damageInfo )
 		}
 
 		VP_PlayBattleChatterLine( player, deathSound, true )
-		break
+		i++
+
+		if ( i >= 2 )
+			break
 	}
 }
 
@@ -398,6 +411,38 @@ function VP_OnWeaponAttack( player, weapon, weaponName, shotsFired )
 		return
 
 	VP_PlayBattleChatterLine( player, "grenade_out", true )
+}
+
+function VP_HardpointOnStartTouch( touchEnt, trigger, hardpoint )
+{
+	if ( !touchEnt.IsPlayer() )
+		return
+
+	if ( touchEnt.GetTeam() == trigger.GetTeam() )
+		return
+
+	if ( !VP_CanPlayBattleChatter( touchEnt ) )
+		return
+
+	VP_PlayBattleChatterLine( touchEnt, "capturing_hp", true )
+}
+
+function VP_HardpointOnEndTouch( touchEnt, trigger, hardpoint )
+{
+}
+
+function VP_HardpointSwitchedTeam( hardpoint, previousTeam )
+{
+	foreach ( player in hardpoint.s.teamPlayersTouching[ hardpoint.GetTeam() ] )
+	{
+		if ( !IsAlive( player ) )
+			continue
+
+		if ( !VP_CanPlayBattleChatter( player ) )
+			continue
+
+		VP_PlayBattleChatterLine( player, "captured_hp", true )
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
