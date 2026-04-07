@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"addontitle"			"Nachos.Pilot_Shields"
+	"addonDescription"		"Gives energy shields to pilots"
+	"addonversion"			"1.0"
+	"addonauthor"			"NachosChipeados"
+
+	"addonContent_Script"	"1"
+}
