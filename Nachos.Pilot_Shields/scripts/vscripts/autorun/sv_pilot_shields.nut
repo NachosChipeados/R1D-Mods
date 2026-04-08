@@ -67,7 +67,7 @@ function PlayerShield_TookDamage( player, damageInfo )
 
 	soul.s.nextRegenTime = Time() + EVAC_SHIP_SHIELD_REGEN_DELAY
 
-	//ShieldModifyDamage( player, damageInfo )
+	ShieldModifyDamage( player, damageInfo )
 }
 
 function PlayerTitanShieldRegenThink( soul, player )
