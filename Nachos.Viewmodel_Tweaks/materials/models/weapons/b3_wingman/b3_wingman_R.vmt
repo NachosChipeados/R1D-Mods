@@ -1,0 +1,53 @@
+// v1.01
+//This file is auto-generated from reVaMpT. Edit at your own risk.
+"VertexLitGeneric"
+{
+	"$vertexcolor" "1"
+	"$vertexalpha" "1"
+
+	"$surfaceprop" "metal"
+	"$basetexture" "vgui/hud/white" //models\weapons\b3_wingman\red
+	"$selfillum" "1"
+	"$selfillummask" "vgui/hud/white"
+
+	"$color" "[1 1 1]"
+	"$selfillumtint" "[1 1 1]"
+
+	"$valuezero"	"0"
+
+	"$colorzero"		"[0 0 0]"
+	"$colorblind_color"		"[1 1 1]"
+
+	"$clroffsetzero"	"[1 0 0]" //4 1 1
+
+	"Proxies"
+	{
+		EntityScript
+		{
+			scriptFuncName	"VMTCallback_ColorBlindRed"
+			resultVar $colorblind_color
+		}
+
+		//	if ( srcVar1 > srcVar2 )
+		//		resultVar = greaterVar
+		//	else
+		//		resultVar = LessEqualVar
+		LessOrEqual
+		{
+			lessEqualVar	$clroffsetzero
+			greaterVar		$colorblind_color
+			srcVar1			$colorblind_color
+			srcVar2			$valuezero
+			resultVar		$color
+		}
+
+		LessOrEqual
+		{
+			lessEqualVar	$clroffsetzero
+			greaterVar		$colorblind_color
+			srcVar1			$colorblind_color
+			srcVar2			$valuezero
+			resultVar		$selfillumtint
+		}
+	}
+}
