@@ -12,7 +12,8 @@ function main()
 	AddCallback_PlayerOrNPCKilled( VP_PlayerOrNPCKilled )
 	AddCallback_OnClientChatMsg( VP_ChatMsg )
 	AddDamageCallback( "player", VP_PlayerDamaged )
-	TEMPAddCallback_OnWeaponAttack( VP_OnWeaponAttack )
+	AddCallback_OnWeaponAttack( VP_OnWeaponAttack )
+	AddSpawnCallback( "info_hardpoint", VP_HardpointSpawned )
 
 	::voicelines <- {}
 	voicelines.RELOAD <- { prefix = "diag_%s_grunt%i_gs_magswitchcall_0%s", maxLines = 3 }
@@ -83,18 +84,6 @@ function main()
 	}
 
 	Globalize( VP_PlayBattleChatterLine )
-}
-
-function EntitiesDidLoad()
-{
-	if ( GAMETYPE != CAPTURE_POINT && GAMETYPE != UPLINK )
-		return
-
-	RegisterHardpointTriggerFunc( Bind( VP_HardpointOnStartTouch ), Bind( VP_HardpointOnEndTouch ) )
-	foreach ( hardpoint in level.hardpoints )
-	{
-		AddHardpointTeamSwitchCallback( VP_HardpointSwitchedTeam ) //////
-	}
 }
 
 function VP_PlayerConnected( player )
@@ -252,10 +241,11 @@ function VP_PlayDeathSound( victim, damageInfo )
 
 function VP_PlayAllyDownSound( victim, attacker, damageInfo )
 {
-	if ( victim == attacker || ( attacker.GetPetTitan() && victim == attacker.GetPetTitan() ) )
+	if ( victim == attacker )
 		return
 
 	local deathSound
+	local delay = 0.8
 	local i = 0
 
 	foreach( player in GetPlayerArrayOfTeam( victim.GetTeam() ) )
@@ -263,7 +253,7 @@ function VP_PlayAllyDownSound( victim, attacker, damageInfo )
 		if ( !IsAlive( player ) )
 			continue
 
-		if ( !VP_CanPlayBattleChatter( player, false ) )
+		if ( !VP_CanPlayBattleChatter( player ) )
 			continue
 
 		if ( GetLivingPlayers( victim.GetTeam() ).len() == 1 && ( GAMETYPE == COOPERATIVE || IsEliminationBased() ) )
@@ -275,10 +265,13 @@ function VP_PlayAllyDownSound( victim, attacker, damageInfo )
 			if ( IsPilot( victim ) )
 				deathSound = "ally_pilot_down"
 			else if ( victim.IsTitan() )
+			{
 				deathSound = CoinFlip() ? "ally_titan_down" : "ally_eject_fail"
+				delay = 1.3 // A bit more delay for a titan explosion to clear
+			}
 		}
 
-		VP_PlayBattleChatterLine( player, deathSound, true )
+		thread VP_PlayBattleChatterLine_Delayed( player, deathSound, delay, true )
 		i++
 
 		if ( i >= 2 )
@@ -368,7 +361,7 @@ function VP_PlayerDamaged( player, damageInfo )
 
 function VP_PlayPainSounds( player, damageInfo )
 {
-	if ( !VP_CanPlayBattleChatter( player ) )
+	if ( !VP_CanPlayBattleChatter( player, true, false ) )
 		return
 
 	if ( player.GetHealth() <= damageInfo.GetDamage() )
@@ -382,6 +375,9 @@ function VP_PlayEnemyEngagedVoicelines( player, damageInfo )
 	local attackInfo = VP_GetAttackInfo( damageInfo )
 	local attacker = attackInfo.attacker
 	if ( !attacker )
+		return
+
+	if ( player == attacker )
 		return
 
 	if ( !attacker.IsPlayer() || attacker.IsTitan() )
@@ -411,6 +407,18 @@ function VP_OnWeaponAttack( player, weapon, weaponName, shotsFired )
 		return
 
 	VP_PlayBattleChatterLine( player, "grenade_out", true )
+}
+
+function VP_HardpointSpawned( hardpoint )
+{
+	if ( GAMETYPE != CAPTURE_POINT && GAMETYPE != UPLINK )
+		return
+
+	RegisterHardpointTriggerFunc( Bind( VP_HardpointOnStartTouch ), Bind( VP_HardpointOnEndTouch ) )
+	foreach ( hardpoint in level.hardpoints )
+	{
+		//AddHardpointTeamSwitchCallback( VP_HardpointSwitchedTeam ) //////
+	}
 }
 
 function VP_HardpointOnStartTouch( touchEnt, trigger, hardpoint )
@@ -603,28 +611,31 @@ function GenerateBattleChatterAlias( player, eventType, dialogInfo )
 	return modifiedAlias
 }
 
-function VP_CanPlayBattleChatter( entity, spectreCheck = true, femaleCheck = true, cloakCheck = true )
+function VP_CanPlayBattleChatter( player, spectreCheck = true, femaleCheck = true, cloakCheck = true )
 {
 	if ( IsTrainingLevel() )
 		return false
 
-	if ( entity.IsTitan() )
+	if ( !player.IsPlayer() )
+		return
+
+	if ( player.IsTitan() )
 		return false
 
 	if ( spectreCheck )
 	{
-		if ( entity.IsSpectre() )
+		if ( player.IsSpectre() )
 			return false
 
-		if ( entity.IsPlayer() && entity.GetPlayerSettingsField( "footstep_type" ) == "robot" )
+		if ( player.GetPlayerSettingsField( "footstep_type" ) == "robot" )
 			return false
 	}
 
 	// No female grunts = no voicelines to use... sad
-	if ( femaleCheck && entity.IsPlayer() && IsFemalePilotModel( entity ) )
+	if ( femaleCheck && IsFemalePilotModel( player ) )
 		return false
 
-	if ( cloakCheck && IsCloaked( entity ) )
+	if ( cloakCheck && IsCloaked( player ) )
 		return false
 
 	return true
@@ -633,26 +644,13 @@ function VP_CanPlayBattleChatter( entity, spectreCheck = true, femaleCheck = tru
 function IsFemalePilotModel( player )
 {
 	local femaleModels = [ MILITIA_FEMALE_BR, MILITIA_FEMALE_CQ, MILITIA_FEMALE_DM, SARAH_MODEL ]
-	if ( player.GetModelName() in femaleModels )
-		return true
+	foreach ( model in femaleModels )
+	{
+		if ( player.GetModelName() == model )
+			return true
+	}
 
 	return false
-}
-
-function TEMPAddCallback_OnWeaponAttack( callbackFunc )
-{
-    Assert( "onWeaponAttackCallbacks" in level )
-	Assert( type( this ) == "table", "AddCallback_OnWeaponAttack can only be added on a table. " + type( this ) )
-
-	local name = FunctionToString( callbackFunc )
-    Assert( !( name in level.onWeaponAttackCallbacks ), "Already added " + name + " with AddCallback_OnPlayerRespawned" )
-
-	local callbackInfo = {}
-	callbackInfo.name <- name
-	callbackInfo.func <- callbackFunc
-	callbackInfo.scope <- this
-
-	level.onWeaponAttackCallbacks[name] <- callbackInfo
 }
 
 main()

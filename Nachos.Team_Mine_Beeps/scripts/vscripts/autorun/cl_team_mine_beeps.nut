@@ -16,7 +16,7 @@ function MineCreated( mine, isRecreate )
 	if ( className == "mp_weapon_proximity_mine" || className == "mp_weapon_laser_mine" )
 		thread EnableTrapWarningSound_Client( mine, PROXIMITY_MINE_ARMING_DELAY, "Weapon_ProximityMine_ArmedBeep" )
 	else if ( className == "mp_weapon_satchel" )
-		thread EnableTrapWarningSound_Client( mine, 0, "Weapon_ProximityMine_ArmedBeep" ) // "Weapon_R1_Satchel.ArmedBeep_Fixed" change after the update is out
+		thread EnableTrapWarningSound_Client( mine, 0, "Weapon_R1_Satchel.ArmedBeep_Fixed" )
 }
 
 // Client version of EnableTrapWarningSound
