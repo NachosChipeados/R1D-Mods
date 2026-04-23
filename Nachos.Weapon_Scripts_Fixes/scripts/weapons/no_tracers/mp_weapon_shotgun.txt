@@ -1,34 +1,33 @@
 WeaponData
 {
 	// General
-	"printname"   									"#WPN_TWINB_SHOTGUN"
-	"shortprintname"								"#WPN_TWINB_SHOTGUN_SHORT"
-	"description" 									"#WPN_TWINB_SHOTGUN_DESC"
-	"longdesc" 										"#WPN_TWINB_SHOTGUN_LONGDESC"
+	"printname"   									"#WPN_SHOTGUN"
+	"shortprintname"								"#WPN_SHOTGUN_SHORT"
+	"description" 									"#WPN_SHOTGUN_DESC"
+	"longdesc"										"#WPN_SHOTGUN_LONGDESC"
 	"weaponClass" 									"human"
 	"body_type"										"close_quarters"
 	"fire_mode"   									"semi-auto"
-	"server_vscript"  								"weapons/mp_weapon_twinb_shotgun"
-	"client_vscript"  								"weapons/mp_weapon_twinb_shotgun"
+	"server_vscript"  								"weapons/mp_weapon_shotgun"
+	"client_vscript"  								"weapons/mp_weapon_shotgun"
 	"pickup_hold_prompt"  							"Hold [USE] [WEAPONNAME]"
 	"pickup_press_prompt" 							"[USE] [WEAPONNAME]"
 	"minimap_reveal_distance"						"32000"
 
 	// Menu Stats
-	"stat_damage" 									"50"
-	"stat_range"  									"70"
-	"stat_accuracy"   								"65"
-	"stat_rof"										"30"
+	"stat_damage" 									"98"
+	"stat_range"  									"15"
+	"stat_accuracy"   								"15"
+	"stat_rof"										"20"
 
 	// Models
-	"viewmodel"   									"models/weapons/twinbshotgun/ptpov_twinbshotgun.mdl"
-	"playermodel" 									"models/weapons/twinbshotgun/w_twinbshotgun.mdl"
-	"lobbymodel"									"models/weapons/twinbshotgun/ptpov_twinbshotgun.mdl"
-	"activitymodifier"								"twinb"
+	"viewmodel"   									"models/weapons/w1128/ptpov_w1128.mdl"
+	"playermodel" 									"models/weapons/w1128/w_w1128.mdl"
+	"anim_prefix" 									"python"
 
 	// Effects
 	"tracer_effect"   								"weapon_tracers_shotgun"
-	"tracer_effect_first_person"   					"weapon_tracers_shotgun"
+	//"tracer_effect_first_person"   					"weapon_tracers_shotgun"
 	"impact_effect_table" 							"inc_bullet"
 	"vortex_absorb_effect"							"wpn_vortex_projectile_shotgun_FP"
 	"vortex_absorb_effect_third_person"				"wpn_vortex_projectile_shotgun"
@@ -39,10 +38,6 @@ WeaponData
 	"sound_dryfire"									"shotgun_dryfire"
 	"sound_trigger_pull"							"shotgun_dryfire"
 	"sound_trigger_release"							"shotgun_dryfire"
-	"fire_sound_1_player_1p"						"SG_Twin_B.Fire" // 기존 샷건은 소음기, 번카드 모드에 따라서 사운드가 달라짐 vscripts에 있음
-	"fire_sound_1_player_3p"						"SG_Twin_B.Fire"
-	"fire_sound_1_npc"								"SG_Twin_B.Fire"
-
 	"fx_shell_eject_view"							"wpn_shelleject_shotshell_FP"
 	"fx_shell_eject_world"							"wpn_shelleject_shotshell"
 	"fx_shell_eject_attach"							"shell"
@@ -51,90 +46,97 @@ WeaponData
 	"fx_muzzle_flash_world"							"mflash_shotgun_FULL"
 	"fx_muzzle_flash_attach"						"muzzle_flash"
 
+	//Sounds
+	"fire_sound_1_player_1p"						"Weapon_shellCasings.Bounce"
+	"fire_sound_1_player_3p"						"Weapon_shellCasings.Bounce"
+
 	// Damage - When Used by Players
 	"damage_type" 									"buckshot"
-	"damage_near_distance"							"300"
-	"damage_far_distance" 							"700"
-	"damage_near_value"   							"130"
-	"damage_far_value"								"35"
+	"damage_near_distance"							"270"
+	"damage_far_distance" 							"850"
+	"damage_near_value"   							"285"
+	"damage_far_value"								"30"
 	"damage_falloff_type"							"inverse"
 	"damage_inverse_distance"						"130"
 	"damage_near_value_titanarmor"					"130"
 	"damage_far_value_titanarmor" 					"10"
-	"damage_rodeo" 									"700"
+	"damage_rodeo" 									"550"
 
 	// Damage - When Used by NPCs
 	"npc_damage_near_distance"						"100"
 	"npc_damage_far_distance" 						"1200"
-	"npc_damage_near_value"   						"40"
-	"npc_damage_far_value"							"20"
+	"npc_damage_near_value"   						"50"
+	"npc_damage_far_value"							"25"
 	"npc_damage_near_value_titanarmor"				"40"
 	"npc_damage_far_value_titanarmor" 				"0"
 
 	"impulse_force"   								"800"
 
 	"critical_hit_damage_scale"						"2.0"
-	"critical_hit"									"1"
+	"critical_hit"									"0"
 
 	// Ammo
-	"ammo_stockpile_max"							"30"
-	"ammo_clip_size"   								"2"
-	"ammo_default_total"							"30"
+	"ammo_stockpile_max"							"60"
+	"ammo_clip_size"   								"6"
+	"ammo_default_total"							"60"
 
 	// Behavior
-	"fire_rate"   									"2.2"
+	"fire_rate"   									"1.72"
 	"zoom_time_in"									"0.2"
 	"zoom_time_out"   								"0.2"
 	"zoom_fov"										"55"
-	"reload_time" 									"1.85"
-	"reload_time_late1" 							"1.15"
-	"reloadempty_time"								"1.85"
-	"reloadempty_time_late1"						"1.15"
-	"holster_time"									"0.5"  // 무기 스왑 시 넣는 모션
-	"deploy_time" 									"0.66" // 무기 스왑 시 꺼내는 모션
-	"lower_time"  									"0.25" //  수류탄 투쳑, 파쿠르 시 넣는 모션
-	"raise_time"  									"0.3"  // 수류탄 투쳑, 파쿠르 시 꺼내는 모션
+	"reload_time" 									"2.75"
+	"reload_time_late1"								"1.45"
+	"reload_time_late2"								"0.25"
+	"reloadempty_time"								"3.0"
+	"reloadempty_time_late1"						"2"
+	"reloadempty_time_late2"						"1"
+	"reloadempty_time_late3"						"0.8"
+	"holster_time"									"0.5"
+	"deploy_time" 									"0.8"
+	"lower_time"  									"0.25"
+	"raise_time"  									"0.3"
 	"vortex_refire_behavior"  						"bullet"
 	"allow_empty_fire"								"0"
-	"reload_enabled"  								"1"  // 탄약 소진 시 자동 재장전 여부
-	"allow_empty_click"   							"1"  
-	"empty_reload_only"   							"0"	 // 탄약 소진 시에만 장전 가능
+	"reload_enabled"  								"1"
+	"allow_empty_click"   							"1"
+	"empty_reload_only"   							"0"
 	"trigger_snipercam"   							"0"
 	"allow_headshots" 								"0"
 	"primary_fire_does_not_block_sprint"			"0"
-	"ads_move_speed_scale"							"0.75" // 사격 시 이동 수준을 권총,SMG 수준으로 상향
+	"ads_move_speed_scale"							"0.5"
 	"aimassist_disable_hipfire"						"0"
 	"aimassist_disable_ads"							"0"
 	"aimassist_disable_hipfire_titansonly"			"1"
 	"aimassist_disable_ads_titansonly"				"1"
-	"move_speed_modifier" 							"1.00"//Bug with move speed > 1.0, temporary work around.
+	"move_speed_modifier" 							"0.95238"//Bug with move speed > 1.0, temporary work around.
 
-	// Spread 일반 샷건 대비 집탄을 넓힘(7.5->8.5) 근거리 교전 유도
-	"spread_stand_hip" 								"8.5"
-	"spread_stand_hip_run" 							"8.5"
-	"spread_stand_hip_sprint"                       "8.5"
-	"spread_stand_ads"  							"8.5"
-	"spread_crouch_hip"								"8.5"
-	"spread_crouch_ads"  							"8.5"
-	"spread_air_hip"	   							"8.5"
-	"spread_air_ads"   								"8.5"
+	// Spread
+	"spread_stand_hip" 								"7.5"
+	"spread_stand_hip_run" 							"7.5"
+	"spread_stand_hip_sprint"                       "7.5"
+	"spread_stand_ads"  							"7.5"
+	"spread_crouch_hip"								"7.5"
+	"spread_crouch_ads"  							"7.5"
+	"spread_air_hip"	   							"7.5"
+	"spread_air_ads"   								"7.5"
 
 	// Spread on NPCs affects their initial shooting direction
 	// Don't make this a large number or the damage/tracers won't be even remotely parallel to their barrel
 	"spread_npc"  									"2"
 
-	// View Kick 근거리 교전이 용이하도록 일반 샷건 번카드 수준으로 반동을 낮춤
+	// View Kick
 	"viewkick_spring" 								"shotgun"
 
-	"viewkick_pitch_base" 							"-1.75"
-	"viewkick_pitch_random"   						"0.75"
-	"viewkick_pitch_softScale"						"0.3"
-	"viewkick_pitch_hardScale"						"1.5"
+	"viewkick_pitch_base" 							"-2.25"
+	"viewkick_pitch_random"   						"1"
+	"viewkick_pitch_softScale"						"0.4"
+	"viewkick_pitch_hardScale"						"2.0"
 
-	"viewkick_yaw_base"   							"-0.65"
-	"viewkick_yaw_random" 							"0.38"
-	"viewkick_yaw_softScale"  						"0.38"
-	"viewkick_yaw_hardScale"  						"1.5"
+	"viewkick_yaw_base"   							"-0.95"
+	"viewkick_yaw_random" 							"0.5"
+	"viewkick_yaw_softScale"  						"0.5"
+	"viewkick_yaw_hardScale"  						"2.0"
 
 	"viewkick_roll_base"  							"0"
 	"viewkick_roll_randomMin" 						"0.6"
@@ -267,7 +269,7 @@ WeaponData
 	"rest_time_between_bursts_min"					"0.5"
 	"rest_time_between_bursts_max"					"0.5"
 
-
+	// WeaponED Unhandled Key/Values and custom script Key/Values
 	"bob_tilt_angle"  								"0.5"
 	"sway_turn_angle_factor"  						"-0.5"
 	"sway_turn_origin_factor" 						"0"
@@ -278,14 +280,13 @@ WeaponData
 	"sway_move_angle_factor_zoomed"   				"0"
 	"sway_move_origin_factor_zoomed"  				"0.03"
 	"sway_gain"   									"10.0"
-
 	"deployfirst_time"								"1.25"
 	"deploycatch_time"								"1.33"
 	"sprintcycle_time"								".55"
 	"is_anti_titan"  							    "0"
 
 	// Crosshair
-	"red_crosshair_range" 							"700"
+	"red_crosshair_range" 							"850"
 
 	// Bodygroups:
 	"bodygroup1_name"	"sight_aog04"
@@ -294,34 +295,45 @@ WeaponData
 	"bodygroup2_set"	"0"
 	"bodygroup3_name"	"sight_holo"
 	"bodygroup3_set"	"0"
-	"bodygroup4_name"	"suppressor_cyl_sm"
+	"bodygroup4_name"	"suppressor_cyl_med"
 	"bodygroup4_set"	"0"
-	"bodygroup5_name"	"suppressor_sq_sm"
+	"bodygroup5_name"	"suppressor_sq_med"
 	"bodygroup5_set"	"0"
 
-    "clip_bodygroup"						"twinbshotgun_shells"
+    "clip_bodygroup"						"w1128_magazine"
     "clip_bodygroup_index_shown"			"0"
     "clip_bodygroup_index_hidden"			"1"
     "clip_bodygroup_show_for_milestone_0"	"1"
     "clip_bodygroup_show_for_milestone_1"	"0"
     "clip_bodygroup_show_for_milestone_2"	"1"
     "clip_bodygroup_show_for_milestone_3"	"1"
-
 	Mods
 	{
-		// "slammer"					"41061"
-		// "integrated_gyro"			"41052"
-		// "match_trigger"				"41532" // TB
-
-		// "pas_fast_reload"			"41501"
-		// "pas_run_and_gun"			"41511"
-
 		pas_fast_reload
 		{
 			"reload_time"								"*0.7"
 			"reload_time_late1"							"*0.7"
 			"reloadempty_time"							"*0.7"
 			"reloadempty_time_late1"					"*0.7"
+		}
+		extended_ammo
+		{
+			"ammo_stockpile_max"						"90"
+			"ammo_clip_size"   							"9"
+			"ammo_default_total"						"90"
+		}
+		recoil_compensator
+		{
+			"viewkick_pitch_base" 							"*0.6"
+			"viewkick_pitch_random"   						"*0.6"
+
+			"viewkick_yaw_base"   							"*0.6"
+			"viewkick_yaw_random" 							"*0.6"
+
+			"viewkick_perm_pitch_base"				 		"*0.6"
+			"viewkick_perm_pitch_random"   					"*0.6"
+			"viewkick_perm_yaw_base"   						"*0.6"
+			"viewkick_perm_yaw_random" 						"*0.6"
 		}
 		silencer
 		{
@@ -332,12 +344,8 @@ WeaponData
 			"viewkick_yaw_random" 							"*0.7"
 
 			"damage_near_distance"							"250"
-			//"damage_near_value"   							"210"
+			"damage_near_value"   							"210"
 			"damage_far_value"								"28"
-
-			"fire_sound_1_player_1p"						"SG_Twin_B.Fire_Suppressed"
-			"fire_sound_1_player_3p"						"SG_Twin_B.Fire_Suppressed"
-			"fire_sound_1_npc"								"SG_Twin_B.Fire_Suppressed"
 
 			//"rumble"  									"4"
 			//"tracer_effect"   							"weapon_tracers_pistol"
@@ -357,48 +365,38 @@ WeaponData
 			"spread_crouch_ads"  							"10"
 			"spread_air_hip"	   							"10"
 			"spread_air_ads"   								"10"
-			"damage_near_value"   							"/1.1"
-			"damage_far_value"								"/1.1"
+			"damage_near_value"   							"/1.2"
+			"damage_far_value"								"/1.2"
 		}
-		pas_run_and_gun
+		twin_slug
 		{
-			"primary_fire_does_not_block_sprint"			"1"
-			"crosshair_force_sprint_fade_disabled"          "1"
+			"ammo_stockpile_max"							"60"
+			//"damage_near_value"   						"200"
+			"ammo_clip_size"   								"2"
+			"ammo_default_total"							"60"
 		}
-		burn_mod_twinb
+		burn_mod_shotgun
 		{
+			"description" 									"Rapid Fire Shotgun"
 			"crosshair_index"								"1"
-			"damage_near_distance"							"100++"
-			"damage_far_distance" 							"100++"
-			"damage_near_value"   							"220"
-			"damage_far_value"								"25"
+			"fire_mode"   									"auto"
+			"fire_rate"   									"3.5"
 
-			"ammo_stockpile_max"							"10++"
-			"ammo_default_total"							"10++"
+			"viewkick_pitch_base" 							"-1.75"
+			"viewkick_pitch_random"   						"0.75"
+			"viewkick_pitch_softScale"						"0.3"
+			"viewkick_pitch_hardScale"						"1.5"
 
-			"fire_rate"   									"2.5"
-			"is_burn_mod"									"1"
-		}
-
-		dev_10shells
-		{
-			"ammo_stockpile_max"							"400"
-			"ammo_clip_size"   								"10"
-			"ammo_default_total"							"400"
-		}
-		dev_primary
-		{
-			"damage_near_value"   							"220"
-			"damage_far_value"								"25"
-
-			"ammo_stockpile_max"							"40"
-			"ammo_default_total"							"40"
-
-			"fire_rate"   									"2.5"
+			"viewkick_yaw_base"   							"-0.65"
+			"viewkick_yaw_random" 							"0.38"
+			"viewkick_yaw_softScale"  						"0.38"
+			"viewkick_yaw_hardScale"  						"1.5"
+			"is_burn_mod"		"1"
 		}
 	}
 
-	CrosshairData // 중심 확인을 편의를 위한 점 추가
+
+	CrosshairData
 	{
 		BaseWeapon
 		{
@@ -429,22 +427,8 @@ WeaponData
 				"spread_initial_angle"		"45"
 				"spread_initial_offset"		"-3"
 			}
-			Element2
-			{
-				"type"						"static"
-				"material"					"hud/crosshairs/b3wingman"
-				"size_x"					"28"
-				"size_y"					"28"
-			}
-			Element3
-			{
-				"type"						"static"
-				"material"					"hud/crosshairs/b3wingman_shadow"
-				"size_x"					"28"
-				"size_y"					"28"
-			}
 		}
-		Burn_Mod //Match BaseWeapon + default color change until override setting.
+		BurnCardMod //Match BaseWeapon + default color change until override setting.
 		{
 			"inherit_data_from"				"BaseWeapon"
 
