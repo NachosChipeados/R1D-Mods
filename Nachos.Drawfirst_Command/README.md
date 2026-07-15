@@ -1,0 +1,1 @@
+Adds a command to play your weapon's drawfirst animations (if it has any). All you need to do is to bind a key to `drawfirst` (ex: `bind h drawfirst`). You could also just say `drawfirst` in the console.

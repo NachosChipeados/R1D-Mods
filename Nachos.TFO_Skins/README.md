@@ -1,0 +1,1 @@
+Adds a few weapon reskins from Titanfall Online. These replaced the regular skins from the regular game in TFO, but instead now theyll apply to guns when spawning in as a specific team. Not sure what their deal is but theyre kinda neat

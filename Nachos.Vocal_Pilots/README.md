@@ -1,0 +1,1 @@
+Lets your pilot talk when doing certain things. No voicelines will play if youre cloaking.

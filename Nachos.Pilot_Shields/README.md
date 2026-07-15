@@ -1,0 +1,1 @@
+Gives energy shields to pilots. Shields give you 100 extra health, disable flinch, and recharge after 6 seconds.

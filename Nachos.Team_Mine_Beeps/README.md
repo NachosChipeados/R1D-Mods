@@ -1,0 +1,1 @@
+Plays mine and satchel beep sounds even when they're on your team, just like in TF2.

@@ -1,7 +1,7 @@
 "AddonInfo"
 {
 	"addontitle"			"Nachos.Pain_Sounds"
-	"addonDescription"		"Plays pain sounds when on low health"
+	"addonDescription"		"Plays some unused pain sounds when on low health"
 	"addonversion"			"1.0"
 	"addonauthor"			"NachosChipeados"
 

@@ -1,0 +1,1 @@
+Server-side mod that plays the gamemode announcement every time you respawn, for the True Nexon Experience.

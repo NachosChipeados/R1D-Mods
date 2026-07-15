@@ -1,0 +1,1 @@
+Plays Barker's titan announcements outside of the campaign.

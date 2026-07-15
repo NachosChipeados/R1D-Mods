@@ -1,0 +1,1 @@
+A ton of small fixes for some weapon script files.

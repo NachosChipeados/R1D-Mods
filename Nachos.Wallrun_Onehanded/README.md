@@ -1,0 +1,1 @@
+Server-side mod that plays onehanded animations while wallrunning.

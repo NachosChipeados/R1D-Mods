@@ -1,0 +1,1 @@
+Lets the G2 use the sniper hit indicator when using the AOG sight.
