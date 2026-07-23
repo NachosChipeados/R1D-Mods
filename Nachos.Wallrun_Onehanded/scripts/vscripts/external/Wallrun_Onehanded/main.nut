@@ -1,35 +1,34 @@
 function main()
 {
-	AddCallback_OnPlayerRespawned( Wallrun_Onehanded )
-
+	AddCallback_GameStateEnter( eGameState.Playing, WallrunOnehanded_Playing )
 }
 
-function Wallrun_Onehanded( player )
+function WallrunOnehanded_Playing()
 {
-	thread Wallrun_Onehanded_Think( player )
+	thread WallrunOnehanded_Think()
 }
 
-function Wallrun_Onehanded_Think( player )
+function WallrunOnehanded_Think()
 {
-	player.EndSignal( "OnDeath" )
-	player.EndSignal( "OnDestroy" )
-	player.EndSignal( "Disconnected" )
-
-	while ( true )
+	for( ;; )
 	{
-		if ( player.IsWallRunning() )
+		foreach( player in GetLivingPlayers() )
 		{
-			player.SetOneHandedWeaponUsageOn()
-		}
-		else
-		{
-			// GetTitanSoulBeingRodeoed() means "is this player rodeoing someone?"
-			while ( player.IsWallHanging() || player.IsZiplining() || player.GetTitanSoulBeingRodeoed() != null )
-			{
-				wait 0
-			}
+			if ( player.IsBot() )
+				continue
 
-			player.SetOneHandedWeaponUsageOff()
+			if ( player.IsWallRunning() ) //|| ( player.IsOnGround() && player.IsCrouched() && player.GetVelocity().Length() >= 300 ) )
+			{
+				player.SetOneHandedWeaponUsageOn()
+			}
+			else
+			{
+				// GetTitanSoulBeingRodeoed() means "is this player rodeoing someone?"
+				if ( !player.IsWallHanging() && !player.IsZiplining() && player.GetTitanSoulBeingRodeoed() == null )
+				{
+					player.SetOneHandedWeaponUsageOff()
+				}
+			}
 		}
 
 		wait 0
