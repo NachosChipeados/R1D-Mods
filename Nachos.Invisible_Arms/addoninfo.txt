@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"addontitle"			"Nachos.Invisible_Arms"
+	"addonDescription"		"Makes your arms invisible"
+	"addonversion"			"1.0.0"
+	"addonauthor"			"NachosChipeados"
+
+	"addonContent_Skin"		"1"
+}
