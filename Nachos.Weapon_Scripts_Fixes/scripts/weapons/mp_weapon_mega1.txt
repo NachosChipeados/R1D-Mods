@@ -65,7 +65,7 @@ WeaponData
 	"damage_far_value_titanarmor" 					"200"
 	"damage_rodeo" 									"1000" // 500
 
-	"damage_headshot_scale"							"1.4"
+	"damage_headshot_scale"							"1.6"
 	"damage_torso_scale"							"1.4"
 	"damage_arm_scale"								"1.0"
 	"damage_leg_scale"								"1.0"

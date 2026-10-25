@@ -391,8 +391,8 @@ WeaponData
 			"damage_near_value"   							"220"
 			"damage_far_value"								"25"
 
-			"ammo_stockpile_max"							"40"
-			"ammo_default_total"							"40"
+			"ammo_stockpile_max"							"10++"
+			"ammo_default_total"							"10++"
 
 			"fire_rate"   									"2.5"
 		}
