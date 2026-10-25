@@ -169,6 +169,15 @@ WeaponData
 	"bob_yaw" 										"0.5"
 	"bob_roll"										"-0.75"
 
+	// Bob_Zoomed
+	"bob_cycle_time_zoomed"  						"0.45"
+	"bob_vert_dist_zoomed"   						"0.01"
+	"bob_horz_dist_zoomed"   						"0.01"
+	"bob_max_speed_zoomed"   						"150"
+	//"bob_pitch_zoomed"   							"0.002"
+	//"bob_yaw_zoomed" 								"-.002"
+	//"bob_roll_zoomed"								".002"
+
 	// View Drift
 	"viewdrift_ads_stand_scale_pitch" 				"0.6"
 	"viewdrift_ads_crouch_scale_pitch"				"0.6"
