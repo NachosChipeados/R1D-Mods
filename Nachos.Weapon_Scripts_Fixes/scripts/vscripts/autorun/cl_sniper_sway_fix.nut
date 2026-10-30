@@ -31,7 +31,7 @@ function AdsSway()
 		}
 
 		local className = weapon.GetClassname()
-		if ( className != "mp_weapon_dmr" && className != "mp_weapon_sniper" && className != "mp_weapon_mega1" )
+		if ( className != "mp_weapon_dmr" && className != "mp_weapon_sniper" && className != WEAPON_VALKYRIE_NAME )
 		{
 			SetCvarIfNotBool( player, "delta_enable_ads_sway", 1 )
 			continue
