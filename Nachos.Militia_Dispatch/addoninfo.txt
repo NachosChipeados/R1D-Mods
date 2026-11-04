@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"addontitle"			"Nachos.Militia_Dispatch"
+	"addonDescription"		"Restores the militia dispatch voicelines"
+	"addonversion"			"1.0.0"
+	"addonauthor"			"NachosChipeados"
+
+	"addonContent_Skin"		"1"
+}
