@@ -73,9 +73,13 @@ function UpdateViewmodelAmmoForReload( weapon )
 	local maxAmmo = owner.GetWeaponAmmoMaxLoaded( weapon )
 	local ammoStockpile = owner.GetWeaponAmmoStockpile( weapon )
 
+	local scope = weapon.GetScriptScope()
 
-	if ( ammoStockpile > AMMO_BODYGROUP_COUNT )
-		ammoStockpile = AMMO_BODYGROUP_COUNT
+	if ( ammoStockpile > scope.AMMO_BODYGROUP_COUNT )
+		ammoStockpile = scope.AMMO_BODYGROUP_COUNT
+
+	if ( ammoStockpile < rounds )
+		ammoStockpile = rounds
 
 	//printt( "Updating for rounds: " + ammoStockpile );
 	weapon.SetViewmodelAmmoModelIndex( ammoStockpile )
