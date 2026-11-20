@@ -4,7 +4,28 @@ function main()
     AddCallback_OnWeaponClientEvent( VMTeaks_ClientEvent )
 }
 
-function VMTeaks_GetAllWeaponClassnames( grenades = true, titanWeapons = true )
+function VMTeaks_ClientScriptInit( player )
+{
+    PrecacheParticleSystem( "weapon_muzzle_smoke" )
+
+	foreach( className in VMTeaks_GetAllWeaponClassnames( false ) )
+	{
+		// Remove mp_weapon_ from the classname
+		local weaponName = VMTeaks_GetWeaponName( className )
+
+		PrecacheParticleSystem( "wpn_mageject_" + weaponName )
+		PrecacheParticleSystem( "wpn_mageject_" + weaponName + "_FP" )
+		PrecacheParticleSystem( "wpn_mageject_" + weaponName + "_fallback" )
+		PrecacheParticleSystem( "wpn_mageject_" + weaponName + "_resting" )
+
+		PrecacheParticleSystem( "wpn_mageject_" + weaponName + "_02" )
+		PrecacheParticleSystem( "wpn_mageject_" + weaponName + "_02_FP" )
+		PrecacheParticleSystem( "wpn_mageject_" + weaponName + "_02_fallback" )
+		PrecacheParticleSystem( "wpn_mageject_" + weaponName + "_02_resting" )
+	}
+}
+
+function VMTeaks_GetAllWeaponClassnames( grenades )
 {
 	local weapons = []
 	local numWeapons = PersistenceGetEnumCount( "loadoutItems" )
@@ -22,8 +43,7 @@ function VMTeaks_GetAllWeaponClassnames( grenades = true, titanWeapons = true )
 		if ( StringContains( className, "ability" ) )
 			continue
 
-		if ( StringContains( className, "titanweapon" ) && !titanWeapons )
-			continue
+		className = RemapWeaponClassname( className )
 
 		weapons.append( className )
 	}
@@ -31,22 +51,78 @@ function VMTeaks_GetAllWeaponClassnames( grenades = true, titanWeapons = true )
 	return weapons
 }
 
-function VMTeaks_ClientScriptInit( player )
+function RemapWeaponClassname( className )
 {
-    PrecacheParticleSystem( "weapon_muzzle_smoke" )
-
-	foreach( classname in VMTeaks_GetAllWeaponClassnames( false, false ) )
+	// Frontier overhaul and frontier defense 2 use different names for them
+	switch( className )
 	{
-		// Remove mp_weapon_ from the classname
-        // No titan support for now
-		local weaponName = classname.slice( 10, classname.len() )
+		case "mp_weapon_alternator_smg":
+			className = "mp_weapon_alternator"
+			break
 
-		PrecacheParticleSystem( "wpn_mageject_" + weaponName )
-		PrecacheParticleSystem( "wpn_mageject_" + weaponName + "_FP" )
-		PrecacheParticleSystem( "wpn_mageject_" + weaponName + "_fallback" )
-		PrecacheParticleSystem( "wpn_mageject_" + weaponName + "_resting" )
+		case "mp_weapon_energy_ar":
+			className = "mp_weapon_havoc"
+			break
+
+		case "mp_weapon_esaw":
+			className = "mp_weapon_devotion"
+			break
+
+		case "mp_weapon_dragon_lmg":
+			className = "mp_weapon_rampage"
+			break
+
+		case "mp_weapon_hemlok_smg":
+			className = "mp_weapon_volt"
+			break
+
+		case "mp_weapon_meteor":
+			className = "mp_weapon_thermite_launcher"
+			break
+
+		case "mp_weapon_pdw":
+			className = "mp_weapon_prowler"
+			break
+
+		case "mp_weapon_pulse_lmg":
+		case "mp_weapon_coldwar":
+			className = "mp_weapon_cold_war"
+			break
+
+		case "mp_weapon_shotgun_pistol":
+			className = "mp_weapon_mozambique"
+			break
+
+		case "mp_weapon_vinson":
+			className = "mp_weapon_flatline"
+			break
+
+		case "mp_weapon_wingman_n":
+			className = "mp_weapon_wingman_elite"
+			break
 	}
+
+	return className
 }
+
+function VMTeaks_GetWeaponName( className )
+{
+	local titanWeapon = StringContains( className, "mp_titan" )
+
+	local startIndex = titanWeapon ? 15 : 10
+	local weaponName = className.slice( startIndex, className.len() )
+
+	if ( titanWeapon )
+	{
+		// Hack
+		if ( weaponName == "sniper" || weaponName == "shotgun" || weaponName == "rocket_launcher" )
+			weaponName = "titan_" + weaponName
+	}
+
+	return weaponName
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function VMTeaks_ClientEvent( weapon, eventName )
 {
@@ -54,7 +130,10 @@ function VMTeaks_ClientEvent( weapon, eventName )
 		UpdateViewmodelAmmoForReload( weapon )
 
 	if ( eventName == "mag_eject" && GetConVarBool( "autocvar_vmteaks_drop_magazine" ) )
-		thread PlayMagazineEject( weapon )
+		thread PlayMagazineEject( weapon, false )
+
+	if ( eventName == "mag_eject2" && GetConVarBool( "autocvar_vmteaks_drop_magazine" ) )
+		thread PlayMagazineEject( weapon, true )
 
 	if ( eventName = "muzzle_flash" && GetConVarBool( "autocvar_vmteaks_smoketrail" ) )
 		PlayMuzzleSmoke( weapon )
@@ -167,7 +246,7 @@ function PlayMuzzleSmoke( weapon )
 	}
 }
 
-function PlayMagazineEject( weapon )
+function PlayMagazineEject( weapon, secondMag )
 {
 	local owner = weapon.GetWeaponOwner()
 	if ( !IsValid( owner ) || owner != GetLocalViewPlayer() )
@@ -177,23 +256,28 @@ function PlayMagazineEject( weapon )
 	if ( !IsValid( viewmodel ) )
 		return
 
-	local className = weapon.GetClassname()
+	local className = RemapWeaponClassname( weapon.GetClassname() )
 
 	local test = false
 	if ( test )
 	{
-		local allClassnames = VMTeaks_GetAllWeaponClassnames( false, false )
+		local allClassnames = VMTeaks_GetAllWeaponClassnames( false )
 		className = allClassnames[RandomInt( 0, allClassnames.len() ) ]
 	}
 
-	local weaponName = className.slice( 10, className.len() )
+	local weaponName = VMTeaks_GetWeaponName( className )
 	//printt( "className", className )
 
-	local effectIndex = GetParticleSystemIndex( "wpn_mageject_" + weaponName + "_FP" )
+	local effectIndex
+	if ( secondMag )
+		effectIndex = GetParticleSystemIndex( "wpn_mageject_" + weaponName + "_02_FP" )
+	else
+		effectIndex = GetParticleSystemIndex( "wpn_mageject_" + weaponName + "_FP" )
+
 	if ( effectIndex == -1 )
 		return
 
-	local attachmentIndex = viewmodel.LookupAttachment( "mag_eject" )
+	local attachmentIndex = secondMag ? viewmodel.LookupAttachment( "mag_eject02" ) : viewmodel.LookupAttachment( "mag_eject" )
 	if ( attachmentIndex <= 0 )
 		attachmentIndex = viewmodel.LookupAttachment( "L_HAND" )
 	if ( attachmentIndex <= 0 )
