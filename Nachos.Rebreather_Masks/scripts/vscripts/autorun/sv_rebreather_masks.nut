@@ -10,7 +10,7 @@ function main()
 function EnableRebreatherMasks( entity )
 {
 	// Masks are already forced on in outpost
-	if ( GetMapName() == "mp_outpost_207" )
+	if ( GetMapName() == "mp_outpost_207" && entity.IsSoldier() )
 		return
 
 	// Runoff is pretty obvious
@@ -35,5 +35,6 @@ function EnableRebreatherMasks( entity )
 	//printt( "Set mask to: : " + randomMaskIndex )
 	entity.SetBodygroup( maskIndex, randomMaskIndex )
 }
+
 
 main()
